@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ficha de Inscrição Modalidades Individuais- 10º FETARC</title>
+
+<style>
+header{width:100%;margin:0;padding:0;}
+.testeira{width:100%;height:auto;display:block;}
+button{user-select:none;}
+body{font-family:Arial;background:#fff7f0;margin:0
+font-family: Arial;
+    background-color: #f4efe5; /* Mantém a cor antiga como fundo padrão caso a imagem falhe */
+    background-image: url('https://raw.githubusercontent.com/NossoEventoRS/Imagens/refs/heads/main/Fundo.png'); /* Cole o link da sua imagem aqui */
+    background-size: cover; /* Faz a imagem cobrir toda a tela */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita que a imagem fique se repetindo em mosaico */
+    background-attachment: fixed; /* Opcional: o fundo fica parado enquanto você rola a página */ }
+header img{width:100%}
+main{max-width:1100px;margin:30px auto;background:#fff;padding:25px;border-radius:15px;box-shadow:0 0 12px rgba(0,0,0,.2)}
+.section-title{background:#139c01;color:#fff;padding:12px;border-radius:10px;margin-top:40px;font-size:18px}
+.category-box{border:2px solid #ffd2a8;padding:15px;border-radius:12px;margin-top:20px}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th,td{border:1px solid #ddd;padding:8px;font-size:14px;text-align:center}
+th{background:#fdd700}
+input,select{width:95%;padding:6px;border-radius:6px;border:1px solid #ccc}
+.input-prenda{background:#ffe6ef}
+.input-peao{background:#e6f0ff}
+.input-danca{background:#fff6db;font-weight:bold}
+.btn-add{margin-top:10px;background:#139c01;border:none;padding:7px 14px;color:white;border-radius:8px;cursor:pointer}
+.btn-remove{background:red;color:white;border:none;padding:5px 10px;border-radius:6px;cursor:pointer}
+.suplente{background:#fff3cd!important;border:2px solid #139c01}
+.botoes-final{display: flex; justify-content: center; gap: 20px; margin: 50px auto 0 auto; max-width: 600px;}
+.btn-submit,.btn-voltar{width:100%;padding:14px;background:#139c01;color:white;border:none;font-size:18px;border-radius:12px;cursor:pointer;text-decoration:none;text-align:center}
+.btn-submit:hover,.btn-voltar:hover{background:#ffd24d;color:#000;transition:0.2s}
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:999}
+.modal-content{background:#fff;padding:20px;border-radius:12px;width:300px;text-align:center}
+.modal-content button{margin-top:15px;padding:8px 16px;border:none;border-radius:6px;cursor:pointer}
+.loading-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255, 255, 255, 0.7);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:9999;color:rgb(2, 2, 2);text-align:center;}
+footer {text-align: center;margin-top: 20px;font-size: 12px;color: rgb(255, 255, 255);}
+.regulamento-box {margin-top: 20px;padding: 12px;background: #fff3e0;border: 2px solid #139c01;border-radius: 10px;font-size: 14px;}
+.regulamento-box a {color: #139c01;font-weight: bold;text-decoration: none;}
+.regulamento-box input[type="checkbox"] {width: auto;transform: scale(1.2);margin-right: 8px;}
+#contadorInscricao{width:100%; background:linear-gradient(90deg,#fbff00,#139c01); color:white; text-align:center; padding:18px; font-size:20px; font-weight:bold; letter-spacing:1px;}
+#inscricoesEncerradas{text-align:center;font-size:40px;font-weight:bold;color:#8B0000;margin-top:60px;display:none;}
+</style>
+</head>
+<body>
+
+<div class="loading-overlay" id="loading">
+    <h2 style="color: #139c01;">Processando Inscrição...</h2>
+    <p>Aguarde, estamos salvando os dados na planilha e enviando o e-mail...</p>
+</div>    
+
+<header>
+  <img class="testeira" src="https://raw.githubusercontent.com/NossoEventoRS/Imagens/refs/heads/main/ind.png" alt="Testeira Oficial">
+  <div id="contadorInscricao">⏳ Encerramento das inscriçoes... <span id="tempoRestante"></span></div>
+</header>
+<div id="inscricoesEncerradas">INSCRIÇÕES ENCERRADAS</div>
+
+<main>
+<form id="formInscricao">
+<div class="section-title">Dados da Entidade</div>
+<div class="category-box">
+<table>
+<tr>
+<td>Entidade *</td><td><input id="entidade" required></td>
+<td>Município *</td><td><input id="municipio" required></td>
+</tr>
+<tr>
+<td>RT *</td>
+<td>
+    <select id="rt" required>
+        <option value="">Selecione</option>
+        <script>for(let i=1; i<=30; i++) document.write(`<option>${i}ª RT</option>`);</script>
+    </select>
+</td>
+<td>Email *</td><td><input id="email" required type="email"></td>
+</tr>
+<tr>
+<td>Patrão</td><td><input id="patrao"></td>
+<td>Whats *</td><td><input id="whats" required placeholder="(00) 00000-0000"></td>
+</tr>
+<tr>
+<td>Responsável *</td>
+<td colspan="3"><input id="responsavel" required></td>
+</tr>
+</table>
+</div>
+
+<div class="regulamento-box">
+  <label>
+    <input type="checkbox" id="checkRegulamento" required disabled>
+    Li e concordo com o
+    <a href="https://drive.google.com/uc?export=download&id=1vALvRsEpG1ngPwXaUOfm8v4PDgwd4cUM" target="_blank" onclick="liberarCheck()">
+      Regulamento Oficial do Rodeio (Click AQUI para prosseguir)
+    </a>.
+  </label>
+</div>
+
+<div id="modalidades"></div>
+
+<div class="botoes-final">
+<button type="button" class="btn-submit" id="btnEnviar" onclick="enviarInscricao()">ENVIAR INSCRIÇÃO</button>
+<a class="btn-voltar" href="file:///C:/Users/Marcio%20da%20Silva/Documents/Nosso%20EventoRS/Eventos/Rodeio%20Amaranto%20Pereira%2023-23%20de%2008-26/Site%20inscri%C3%A7%C3%A3o/FETARC_Portal_Base/FETARC_Portal/index.html">VOLTAR AO SITE</a>
+</div>
+</form>
+</main>
+
+<div class="modal" id="modalCategoria">
+  <div class="modal-content">
+    <h3>Selecionar categoria</h3>
+    <select id="selectCategoria"></select><br>
+    <button onclick="confirmarCategoria()">Confirmar</button>
+    <button onclick="fecharModal()">Cancelar</button>
+  </div>
+</div>
+
+<footer>Sistema de Inscrição - NossoEventoRS © 2026 | dúvidas: contato@nossoevento.com.br</footer>
+
+<script>
+// --- CONFIGURAÇÃO: COLE A URL DA SUA NOVA IMPLANTAÇÃO ABAIXO ---
+const URL_GS = "https://script.google.com/macros/s/AKfycbzhe9sfjJRf6R7riwf5lVjxSKP6CsgWz6pq_ulDMBsUGVqINxxK6yfURj7vyXYN6-0Q/exec"; 
+
+const encerramento = new Date('2026-08-12T23:59:59-03:00').getTime();
+
+function atualizarContado() {
+    const agora = new Date().getTime();
+    const diff = encerramento - agora;
+
+    // Seleciona os elementos uma única vez para performance
+    const form = document.getElementById("formInscricao");
+    const main = document.querySelector("main");
+    const displayTempo = document.getElementById("tempoRestante");
+
+    if (diff <= 0) {
+        // 1. Para o relógio para não gastar processamento
+        clearInterval(intervaloCronometro);
+
+        // 2. Esconde o formulário (se ele ainda existir)
+        if (form) form.style.display = "none";
+
+        // 3. Substitui todo o conteúdo do <main> pela mensagem
+        if (main) {
+            main.innerHTML = `
+                <div id="inscricoesEncerradas" style="display:block; text-align:center; padding:50px 0;">
+                    <h1 style="color:#d35400; font-size:42px;">INSCRIÇÕES ENCERRADAS</h1>
+                    <br>
+                    <span style="font-size:20px; color:#555;">
+                        10º FETARC<br>
+                        <strong>CTG Amaranto Pereira</strong>
+                    </span>
+                </div>`;
+        }
+        return;
+    }
+
+    // Cálculo do tempo
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+
+    // Exibe no HTML (Verifique se o ID no HTML é 'tempoRestante')
+    if (displayTempo) {
+        displayTempo.innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+    }
+}
+
+// Inicia o intervalo e armazena em uma variável para podermos pará-lo depois
+const intervaloCronometro = setInterval(atualizarContado, 1000);
+
+// Executa imediatamente para não esperar 1 segundo pela primeira exibição
+atualizarContado();
+
+const LIMITE = 3;
+let tipoAtual = "";
+const categoriasPrendaPeao = ["Prenda Pré-Mirim", "Peão Pré-Mirim", "Prenda Mirim", "Peão Mirim", "Prenda Juvenil", "Peão Juvenil", "Prenda Adulta", "Peão Adulto", "Prenda Veterana", "Peão Veterano", "Prenda Xirú", "Peão Xirú"];
+const categoriasGerais = ["Pré-Mirim", "Mirim", "Juvenil", "Adulta"];
+const modalidades = [
+    { nome: "Declamação", tipo: "declamacao" },
+    { nome: "Intérprete Vocal", tipo: "vocal" },
+    { nome: "Danças Tradicionais (Par)", tipo: "tradicional" }
+];
+const mapaModalidade = { declamacao: "Declamação", vocal: "Intérprete Vocal", tradicional: "Danças Tradicionais (Par)" };
+
+function criarTabela(m) {
+    return `<div class="section-title">${m.nome}</div><div class="category-box"><table><thead><tr>${cabecalho(m.tipo)}<th>Ação</th></tr></thead><tbody id="${m.tipo}-body"></tbody></table><button type="button" class="btn-add" onclick="abrirModal('${m.tipo}')">+ Adicionar</button></div>`;
+}
+
+function cabecalho(tipo) {
+    if (tipo === "declamacao") return "<th>Categoria</th><th>Concorrente</th><th>Nasc.</th><th>Cartão</th><th>Amadrinhador</th>";
+    if (tipo === "vocal" || tipo === "chula") return "<th>Categoria</th><th>Concorrente</th><th>Nasc.</th><th>Cartão</th>";
+    if (tipo === "tradicional") return "<th>Categoria</th><th>Prenda</th><th>Nasc.</th><th>Cartão</th><th>Peão</th><th>Nasc.</th><th>Cartão</th><th>Dança</th>";
+}
+
+function abrirModal(tipo) {
+    tipoAtual = tipo;
+    const sel = document.getElementById("selectCategoria");
+    sel.innerHTML = "";
+    
+    let lista = [];
+    if (tipo === "declamacao") {
+        lista = ["Prenda Pré-Mirim", "Peão Pré-Mirim", "Prenda Mirim", "Peão Mirim", "Prenda Juvenil", "Peão Juvenil", "Prenda Adulta", "Peão Adulto"];
+    } else if (tipo === "vocal") {
+        lista = ["Prenda Mirim", "Peão Mirim", "Prenda Juvenil", "Peão Juvenil", "Prenda Adulta", "Peão Adulto"];
+    } else {
+        lista = categoriasGerais;
+    }
+    
+    lista.forEach(c => {
+        let o = document.createElement("option");
+        o.value = c; o.textContent = c;
+        sel.appendChild(o);
+    });
+    document.getElementById("modalCategoria").style.display = "flex";
+}
+function fecharModal() { document.getElementById("modalCategoria").style.display = "none" }
+function confirmarCategoria() { addRow(tipoAtual, document.getElementById("selectCategoria").value); fecharModal() }
+
+function addRow(tipo, categoria) {
+    const tbody = document.getElementById(`${tipo}-body`);
+    let total = 0;
+    ([...tbody.rows] || []).forEach(r => { if (r.querySelector(".categoria").value === categoria) total++; });
+    if (total >= LIMITE) return alert("Limite de 2 titulares + 1 suplente atingido para esta categoria.");
+
+    const tr = document.createElement("tr");
+    if (total === 2) tr.classList.add("suplente");
+    const cat = `<select class="categoria"><option>${categoria}</option></select>`;
+    const del = `<button type="button" class="btn-remove" onclick="this.closest('tr').remove()">X</button>`;
+
+    if (tipo === "declamacao") tr.innerHTML = `<td>${cat}</td><td><input required></td><td><input type="date" required></td><td><input required></td><td><select><option>Não</option><option>Sim</option></select></td><td>${del}</td>`;
+    else if (tipo === "vocal") tr.innerHTML = `<td>${cat}</td><td><input required></td><td><input type="date" required></td><td><input required></td><td>${del}</td>`;
+    else if (tipo === "tradicional") tr.innerHTML = `<td>${cat}</td><td><input class="input-prenda" required></td><td><input type="date" required></td><td><input required></td><td><input class="input-peao" required></td><td><input type="date" required></td><td><input required></td><td><select class="input-danca" required><option value="">Selecione...</option><option>Anú</option><option>Balaio</option><option>Cana Verde</option><option>Carangueijo</option><option>Chico Sapateado</option><option>Chimarrita</option><option>Chimarrita Balão</option><option>Chote Carreirinho</option><option>Chote de Sete Voltas</option><option>Chote de Duas Damas</option><option>Chote de Quatro Passi</option><option>Chote Ingles</option><option>Havaneira Marcada</option><option>Maçanico</option><option>Meia Canha</option><option>Pau de Fitas</option><option>Pezinho</option><option>Quero Mana</option><option>Rancheira de Carreirinha</option><option>Rilo</option><option>Roseira</option><option>Sarrabalho</option><option>Tatu de Volta no Meio</option><option>Tatu de Castonholas</option><option>Tirana do Lenço</option><option>Vanerão Sapateado</option><option>Valsa da Mão Trocada</option><option>Tirana do Ombro</select></td><td>${del}</td>`;
+
+    tbody.appendChild(tr);
+}
+
+function coletarInscricoes() {
+    let lista = [];
+    modalidades.forEach(m => {
+        const tbody = document.getElementById(`${m.tipo}-body`);
+        if (tbody) {
+            [...tbody.rows].forEach(tr => {
+                let valores = [tr.querySelector(".categoria").value];
+                tr.querySelectorAll("input,select").forEach((el, i) => {
+                    if (i > 0) valores.push(el.value);
+                });
+                lista.push({ modalidade: mapaModalidade[m.tipo], valores: valores, suplente: tr.classList.contains("suplente") });
+            });
+        }
+    });
+    return lista;
+}
+
+function enviarInscricao() {
+    const form = document.getElementById("formInscricao");
+    const btn = document.getElementById("btnEnviar");
+
+    // Validação nativa do HTML5 (verifica todos os campos 'required' inclusive das tabelas)
+    if (!form.checkValidity()) {
+        form.reportValidity(); // Mostra o balão de erro no campo vazio
+        return;
+    }
+
+    // Validação extra do regulamento (caso o navegador não pegue o required do disabled)
+    if (!document.getElementById("checkRegulamento").checked) {
+        alert("Você precisa ler e aceitar o regulamento para prosseguir.");
+        return;
+    }
+
+    const inscricoes = coletarInscricoes();
+    if (!inscricoes.length) { 
+        alert("Adicione pelo menos uma modalidade (categoria) e preencha os dados."); 
+        return; 
+    }
+
+    document.getElementById("loading").style.display = "flex";
+    btn.disabled = true;
+
+    // Prepara os dados para o envio
+    const payload = {
+        entidade: document.getElementById("entidade").value,
+        municipio: document.getElementById("municipio").value,
+        rt: document.getElementById("rt").value,
+        email: document.getElementById("email").value,
+        patrao: document.getElementById("patrao").value,
+        whats: document.getElementById("whats").value,
+        responsavel: document.getElementById("responsavel").value,
+        regulamento: "ACEITO",
+        inscricoes: inscricoes
+    };
+
+    fetch(URL_GS, {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(payload)
+    })
+    .then(() => {
+        alert("✅ Inscrição enviada!\nVerifique o e-mail de confirmação em alguns instantes.");
+        location.reload();
+    })
+    .catch((err) => {
+        alert("❌ Erro ao enviar: " + err);
+        document.getElementById("loading").style.display = "none";
+        btn.disabled = false;
+    });
+}
+
+function validarDadosEntidade() {
+    const ids = ["entidade", "municipio", "rt", "email", "whats", "responsavel"];
+    for (let id of ids) {
+        if (!document.getElementById(id).value.trim()) {
+            alert("Por favor, preencha todos os campos obrigatórios (*).");
+            document.getElementById(id).focus();
+            return false;
+        }
+    }
+    if (!document.getElementById("checkRegulamento").checked) {
+        alert("Você precisa aceitar o regulamento.");
+        return false;
+    }
+    return true;
+}
+
+function liberarCheck() {
+    setTimeout(() => { document.getElementById("checkRegulamento").disabled = false; }, 800);
+}
+
+const cont = document.getElementById("modalidades");
+modalidades.forEach(m => cont.innerHTML += criarTabela(m));
+</script>
+</body>
+</html>
