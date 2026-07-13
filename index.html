@@ -3,129 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ficha de Inscrição Modalidades Individuais - 10º FETARC</title>
+<title>Ficha de Inscrição Modalidades Individuais- 10º FETARC</title>
 
 <style>
 header{width:100%;margin:0;padding:0;}
 .testeira{width:100%;height:auto;display:block;}
 button{user-select:none;}
-body{
-    font-family: Arial, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4efe5; 
-    background-image: url('https://raw.githubusercontent.com/NossoEventoRS/Imagens/refs/heads/main/Fundo.png'); 
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    background-attachment: fixed;
-    margin: 0;
-    padding: 0;
-    color: #333;
-}
+body{font-family:Arial;background:#fff7f0;margin:0;
+font-family: Arial;
+    background-color: #f4efe5; /* Mantém a cor antiga como fundo padrão caso a imagem falhe */
+    background-image: url('https://raw.githubusercontent.com/NossoEventoRS/Imagens/refs/heads/main/Fundo.png'); /* Cole o link da sua imagem aqui */
+    background-size: cover; /* Faz a imagem cobrir toda a tela */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita que a imagem fique se repetindo em mosaico */
+    background-attachment: fixed; /* Opcional: o fundo fica parado enquanto você rola a página */ }
 header img{width:100%}
-
-main{
-    max-width:1100px;
-    margin:15px auto;
-    background:#fff;
-    padding:15px;
-    border-radius:15px;
-    box-shadow:0 0 12px rgba(0,0,0,.2);
-    box-sizing: border-box;
-}
-@media (min-width: 768px) {
-    main { margin:30px auto; padding:25px; }
-}
-
-.section-title{background:#139c01;color:#fff;padding:12px;border-radius:10px;margin-top:40px;font-size:18px;font-weight:bold;}
-.category-box{border:2px solid #ffd2a8;padding:15px;border-radius:12px;margin-top:20px;background:#fffcf9;box-sizing:border-box;}
-
-table{width:100%;border-collapse:collapse;margin-top:10px;background:#fff;}
-th,td{border:1px solid #ddd;padding:10px;font-size:14px;text-align:center}
-th{background:#fdd700;color:#333;font-weight:700;}
-
-input,select{width:100%;padding:10px;border-radius:6px;border:1px solid #ccc;box-sizing:border-box;outline:none;font-size:14px;}
-input:focus, select:focus { border-color: #139c01; }
-
+main{max-width:1100px;margin:30px auto;background:#fff;padding:25px;border-radius:15px;box-shadow:0 0 12px rgba(0,0,0,.2)}
+.section-title{background:#139c01;color:#fff;padding:12px;border-radius:10px;margin-top:40px;font-size:18px}
+.category-box{border:2px solid #ffd2a8;padding:15px;border-radius:12px;margin-top:20px}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th,td{border:1px solid #ddd;padding:8px;font-size:14px;text-align:center}
+th{background:#fdd700}
+input,select{width:95%;padding:6px;border-radius:6px;border:1px solid #ccc}
 .input-prenda{background:#ffe6ef}
 .input-peao{background:#e6f0ff}
 .input-danca{background:#fff6db;font-weight:bold}
-
-.btn-add{margin-top:15px;background:#139c01;border:none;padding:10px 20px;color:white;border-radius:8px;cursor:pointer;font-weight:bold;width:100%;transition:0.2s;}
-@media (min-width: 480px) { .btn-add { width: auto; } }
-.btn-add:hover { background:#0f7e00; transform:scale(1.02); }
-
-.btn-remove{background:red;color:white;border:none;padding:8px 12px;border-radius:6px;cursor:pointer;font-weight:bold;width:100%;}
-@media (min-width: 768px) { .btn-remove { padding:5px 10px; width:auto; } }
-
-.suplente{background:#fff3cd!important;border:2px solid #139c01}
-
-.botoes-final{display: flex; flex-direction: column; justify-content: center; gap: 15px; margin: 40px auto 0 auto; max-width: 600px; width:100%;}
-@media (min-width: 600px) { .botoes-final { flex-direction: row; gap: 20px; margin: 50px auto 0 auto; } }
-
-.btn-submit{width:100%;padding:14px;background:#fceb00;color:rgb(0, 0, 0);border:none;font-size:18px;border-radius:12px;cursor:pointer;text-decoration:none;text-align:center;box-sizing:border-box;display:inline-block;transition:0.3s;box-shadow:0 4px 10px rgba(0,0,0,.15);}
-.btn-voltar{width:100%;padding:14px;background:#ff0800;color:white;border:none;font-size:18px;border-radius:12px;cursor:pointer;text-decoration:none;text-align:center;box-sizing:border-box;display:inline-block;transition:0.3s;box-shadow:0 4px 10px rgba(0,0,0,.15);}
-.btn-submit:hover,.btn-voltar:hover{background:#ffd24d;color:#000;transform:scale(1.02);box-shadow:0 6px 14px rgba(0,0,0,.25);}
-
-.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:999;padding:15px;box-sizing:border-box;}
-.modal-content{background:#fff;padding:25px;border-radius:12px;width:100%;max-width:340px;text-align:center;box-shadow:0 5px 15px rgba(0,0,0,.3);}
-.modal-content select { margin-top:10px; }
-.modal-content button{margin-top:15px;padding:10px 18px;border:none;border-radius:6px;cursor:pointer;font-weight:bold;width:100%;box-sizing:border-box;}
-.modal-content button:first-of-type { background:#139c01; color:white; }
-.modal-content button:last-of-type { background:#ddd; color:#333; margin-top:8px; }
-
-.loading-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255, 255, 255, 0.9);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:9999;color:rgb(2, 2, 2);text-align:center;padding:20px;box-sizing:border-box;}
-footer {text-align: center;padding: 20px 10px;font-size: 12px;color: rgb(255, 255, 255);background:rgba(0,0,0,0.4);margin-top:30px;}
-
-.regulamento-box {margin-top: 20px;padding: 15px;background: #fff3e0;border: 2px solid #139c01;border-radius: 10px;font-size: 14px;text-align:center;}
+.btn-add{margin-top:10px;background:#139c01;border:none;padding:7px 14px;color:white;border-radius:8px;cursor:pointer}
+.btn-remove{background:red;color:white;border:none;padding:5px 10px;border-radius:6px;cursor:pointer}
+.botoes-final{display: flex; justify-content: center; gap: 20px; margin: 50px auto 0 auto; max-width: 600px;}
+.btn-submit,.btn-voltar{width:100%;padding:14px;background:#139c01;color:white;border:none;font-size:18px;border-radius:12px;cursor:pointer;text-decoration:none;text-align:center}
+.btn-submit:hover,.btn-voltar:hover{background:#ffd24d;color:#000;transition:0.2s}
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:999}
+.modal-content{background:#fff;padding:20px;border-radius:12px;width:300px;text-align:center}
+.modal-content button{margin-top:15px;padding:8px 16px;border:none;border-radius:6px;cursor:pointer}
+.loading-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255, 255, 255, 0.7);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:9999;color:rgb(2, 2, 2);text-align:center;}
+footer {text-align: center;margin-top: 20px;font-size: 12px;color: rgb(255, 255, 255);}
+.regulamento-box {margin-top: 20px;padding: 12px;background: #fff3e0;border: 2px solid #139c01;border-radius: 10px;font-size: 14px;}
 .regulamento-box a {color: #139c01;font-weight: bold;text-decoration: none;}
-.regulamento-box input[type="checkbox"] {width: auto;transform: scale(1.3);margin-right: 8px;vertical-align: middle;}
-
-#contadorInscricao{width:100%; background:linear-gradient(90deg,#fbff00,#139c01); color:white; text-align:center; padding:15px; font-size:18px; font-weight:bold; letter-spacing:1px; box-sizing:border-box;}
-@media (min-width: 768px) { #contadorInscricao { font-size:20px; padding:18px; } }
-#inscricoesEncerradas{text-align:center;font-size:32px;font-weight:bold;color:#8B0000;margin-top:60px;display:none;}
-
-/* ==========================================================================
-   REGRAS EXCLUSIVAS PARA RESPONSIVIDADE EM CELULARES (DISPOSITIVOS MÓVEIS)
-   ========================================================================== */
-@media (max-width: 767px) {
-    /* Tabela de Dados Gerais da Entidade */
-    .tabela-entidade, .tabela-entidade tbody, .tabela-entidade tr, .tabela-entidade td {
-        display: block;
-        width: 100%;
-        box-sizing: border-box;
-    }
-    .tabela-entidade tr { margin-bottom: 0; border: none; background: transparent; }
-    .tabela-entidade td { border: none; text-align: left; padding: 5px 0; }
-    /* Destaca as células de texto que rotulam os inputs */
-    .tabela-entidade td:nth-child(odd) { font-weight: bold; color: #d35400; padding-top: 10px; font-size: 15px; }
-    .tabela-entidade td[colspan="3"] { width: 100% !important; }
-
-    /* Tabelas Dinâmicas de Modalidades */
-    .tabela-responsiva { display: block; }
-    .tabela-responsiva thead { display: none; } /* Oculta a linha do cabeçalho original */
-    .tabela-responsiva tbody, .tabela-responsiva tr, .tabela-responsiva td { display: block; width: 100%; box-sizing: border-box; }
-    
-    .tabela-responsiva tr {
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        padding: 12px;
-        margin-bottom: 20px;
-        background: #fff;
-    }
-    .tabela-responsiva td { text-align: left; border: none; padding: 6px 0; display: flex; flex-direction: column; }
-    
-    /* Injeção Condicional de Textos com base nos Rótulos de Atributos criados no JS */
-    .tabela-responsiva td[data-label]::before {
-        content: attr(data-label) ":";
-        font-weight: bold;
-        color: #555;
-        margin-bottom: 4px;
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-    .tabela-responsiva td:last-child { padding-top: 10px; } /* Espaço para o botão X */
-}
+.regulamento-box input[type="checkbox"] {width: auto;transform: scale(1.2);margin-right: 8px;}
+#contadorInscricao{width:100%; background:linear-gradient(90deg,#fbff00,#139c01); color:white; text-align:center; padding:18px; font-size:20px; font-weight:bold; letter-spacing:1px;}
+#inscricoesEncerradas{text-align:center;font-size:40px;font-weight:bold;color:#8B0000;margin-top:60px;display:none;}
 </style>
 </head>
 <body>
@@ -137,7 +54,7 @@ footer {text-align: center;padding: 20px 10px;font-size: 12px;color: rgb(255, 25
 
 <header>
   <img class="testeira" src="https://raw.githubusercontent.com/NossoEventoRS/Imagens/refs/heads/main/ind.png" alt="Testeira Oficial">
-  <div id="contadorInscricao">⏳ Encerramento das inscrições... <span id="tempoRestante"></span></div>
+  <div id="contadorInscricao">⏳ Encerramento das inscriçoes... <span id="tempoRestante"></span></div>
 </header>
 <div id="inscricoesEncerradas">INSCRIÇÕES ENCERRADAS</div>
 
@@ -145,7 +62,7 @@ footer {text-align: center;padding: 20px 10px;font-size: 12px;color: rgb(255, 25
 <form id="formInscricao">
 <div class="section-title">Dados da Entidade</div>
 <div class="category-box">
-<table class="tabela-entidade">
+<table>
 <tr>
 <td>Entidade *</td><td><input id="entidade" required></td>
 <td>Município *</td><td><input id="municipio" required></td>
@@ -176,7 +93,7 @@ footer {text-align: center;padding: 20px 10px;font-size: 12px;color: rgb(255, 25
     <input type="checkbox" id="checkRegulamento" required disabled>
     Li e concordo com o
     <a href="https://drive.google.com/uc?export=download&id=1vALvRsEpG1ngPwXaUOfm8v4PDgwd4cUM" target="_blank" onclick="liberarCheck()">
-      Regulamento Oficial do Rodeio (Clique AQUI para prosseguir)
+      Regulamento Oficial do Rodeio (Click AQUI para prosseguir)
     </a>.
   </label>
 </div>
@@ -185,7 +102,7 @@ footer {text-align: center;padding: 20px 10px;font-size: 12px;color: rgb(255, 25
 
 <div class="botoes-final">
 <button type="button" class="btn-submit" id="btnEnviar" onclick="enviarInscricao()">ENVIAR INSCRIÇÃO</button>
-<a class="btn-voltar" href="http://10fetarc.nossoeventors.com.br">VOLTAR AO SITE</a>
+<a class="btn-voltar" href="file:///C:/Users/Marcio%20da%20Silva/Documents/Nosso%20EventoRS/Eventos/Rodeio%20Amaranto%20Pereira%2023-23%20de%2008-26/Site%20inscri%C3%A7%C3%A3o/FETARC_Portal_Base/FETARC_Portal/index.html">VOLTAR AO SITE</a>
 </div>
 </form>
 </main>
@@ -199,12 +116,12 @@ footer {text-align: center;padding: 20px 10px;font-size: 12px;color: rgb(255, 25
   </div>
 </div>
 
-<footer>Sistema de Inscrição - NossoEventoRS © 2026 | dúvidas: contato@nossoevento.com.br</footer>
+<footer>Sistema de Inscrição - NossoEventoRS © 2026 | dúvidas: contato@nossoeventors.com.br</footer>
 
 <script>
 const URL_GS = "https://script.google.com/macros/s/AKfycbzhe9sfjJRf6R7riwf5lVjxSKP6CsgWz6pq_ulDMBsUGVqINxxK6yfURj7vyXYN6-0Q/exec"; 
 
-const encerramento = new Date('2026-08-12T23:59:59-03:00').getTime();
+const encerramento = new Date('2026-08-08T23:59:59-03:00').getTime();
 
 function atualizarContado() {
     const agora = new Date().getTime();
@@ -220,11 +137,11 @@ function atualizarContado() {
         if (main) {
             main.innerHTML = `
                 <div id="inscricoesEncerradas" style="display:block; text-align:center; padding:50px 0;">
-                    <h1 style="color:#d35400; font-size:36px;">INSCRIÇÕES ENCERRADAS</h1>
+                    <h1 style="color:#d35400; font-size:42px;">INSCRIÇÕES ENCERRADAS</h1>
                     <br>
                     <span style="font-size:20px; color:#555;">
                         10º FETARC<br>
-                        <strong>CTG Amaranto Pereira</strong>
+                        <strong>CTG Amaranto Pereira | Alvorada | RS</strong>
                     </span>
                 </div>`;
         }
@@ -244,8 +161,9 @@ function atualizarContado() {
 const intervaloCronometro = setInterval(atualizarContado, 1000);
 atualizarContado();
 
-const LIMITE = 3;
+const LIMITE = 2; // Alterado para no máximo 2 concorrentes
 let tipoAtual = "";
+const categoriasPrendaPeao = ["Prenda Pré-Mirim", "Peão Pré-Mirim", "Prenda Mirim", "Peão Mirim", "Prenda Juvenil", "Peão Juvenil", "Prenda Adulta", "Peão Adulto", "Prenda Veterana", "Peão Veterano", "Prenda Xirú", "Peão Xirú"];
 const categoriasGerais = ["Pré-Mirim", "Mirim", "Juvenil", "Adulta"];
 const modalidades = [
     { nome: "Declamação", tipo: "declamacao" },
@@ -254,14 +172,13 @@ const modalidades = [
 ];
 const mapaModalidade = { declamacao: "Declamação", vocal: "Intérprete Vocal", tradicional: "Danças Tradicionais (Par)" };
 
-// Adicionada a classe 'tabela-responsiva' na estrutura dinâmica
 function criarTabela(m) {
-    return `<div class="section-title">${m.nome}</div><div class="category-box"><table class="tabela-responsiva"><thead><tr>${cabecalho(m.tipo)}<th>Ação</th></tr></thead><tbody id="${m.tipo}-body"></tbody></table><button type="button" class="btn-add" onclick="abrirModal('${m.tipo}')">+ Adicionar</button></div>`;
+    return `<div class="section-title">${m.nome}</div><div class="category-box"><table><thead><tr>${cabecalho(m.tipo)}<th>Ação</th></tr></thead><tbody id="${m.tipo}-body"></tbody></table><button type="button" class="btn-add" onclick="abrirModal('${m.tipo}')">+ Adicionar</button></div>`;
 }
 
 function cabecalho(tipo) {
     if (tipo === "declamacao") return "<th>Categoria</th><th>Concorrente</th><th>Nasc.</th><th>Cartão</th><th>Amadrinhador</th>";
-    if (tipo === "vocal") return "<th>Categoria</th><th>Concorrente</th><th>Nasc.</th><th>Cartão</th>";
+    if (tipo === "vocal" || tipo === "chula") return "<th>Categoria</th><th>Concorrente</th><th>Nasc.</th><th>Cartão</th>";
     if (tipo === "tradicional") return "<th>Categoria</th><th>Prenda</th><th>Nasc.</th><th>Cartão</th><th>Peão</th><th>Nasc.</th><th>Cartão</th><th>Dança</th>";
 }
 
@@ -289,51 +206,19 @@ function abrirModal(tipo) {
 function fecharModal() { document.getElementById("modalCategoria").style.display = "none" }
 function confirmarCategoria() { addRow(tipoAtual, document.getElementById("selectCategoria").value); fecharModal() }
 
-// Injeta os atributos 'data-label' dinamicamente nas células para manter o rótulo correto no celular
 function addRow(tipo, categoria) {
     const tbody = document.getElementById(`${tipo}-body`);
     let total = 0;
     ([...tbody.rows] || []).forEach(r => { if (r.querySelector(".categoria").value === categoria) total++; });
-    if (total >= LIMITE) return alert("Limite de 2 titulares + 1 suplente atingido para esta categoria.");
+    if (total >= LIMITE) return alert("Limite de 2 concorrentes atingido para esta categoria.");
 
     const tr = document.createElement("tr");
-    if (total === 2) tr.classList.add("suplente");
     const cat = `<select class="categoria"><option>${categoria}</option></select>`;
     const del = `<button type="button" class="btn-remove" onclick="this.closest('tr').remove()">X</button>`;
 
-    if (tipo === "declamacao") {
-        tr.innerHTML = `
-            <td data-label="Categoria">${cat}</td>
-            <td data-label="Concorrente"><input required></td>
-            <td data-label="Nasc."><input type="date" required></td>
-            <td data-label="Cartão"><input required></td>
-            <td data-label="Amadrinhador"><select><option>Não</option><option>Sim</option></select></td>
-            <td>${del}</td>`;
-    }
-    else if (tipo === "vocal") {
-        tr.innerHTML = `
-            <td data-label="Categoria">${cat}</td>
-            <td data-label="Concorrente"><input required></td>
-            <td data-label="Nasc."><input type="date" required></td>
-            <td data-label="Cartão"><input required></td>
-            <td>${del}</td>`;
-    }
-    else if (tipo === "tradicional") {
-        tr.innerHTML = `
-            <td data-label="Categoria">${cat}</td>
-            <td data-label="Prenda"><input class="input-prenda" required></td>
-            <td data-label="Nasc. Prenda"><input type="date" required></td>
-            <td data-label="Cartão Prenda"><input required></td>
-            <td data-label="Peão"><input class="input-peao" required></td>
-            <td data-label="Nasc. Peão"><input type="date" required></td>
-            <td data-label="Cartão Peão"><input required></td>
-            <td data-label="Dança">
-                <select class="input-danca" required>
-                    <option value="">Selecione...</option><option>Anú</option><option>Balaio</option><option>Cana Verde</option><option>Carangueijo</option><option>Chico Sapateado</option><option>Chimarrita</option><option>Chimarrita Balão</option><option>Chote Carreirinho</option><option>Chote de Sete Voltas</option><option>Chote de Duas Damas</option><option>Chote de Quatro Passi</option><option>Chote Ingles</option><option>Havaneira Marcada</option><option>Maçanico</option><option>Meia Canha</option><option>Pau de Fitas</option><option>Pezinho</option><option>Quero Mana</option><option>Rancheira de Carreirinha</option><option>Rilo</option><option>Roseira</option><option>Sarrabalho</option><option>Tatu de Volta no Meio</option><option>Tatu de Castonholas</option><option>Tirana do Lenço</option><option>Vanerão Sapateado</option><option>Valsa da Mão Trocada</option><option>Tirana do Ombro</option>
-                </select>
-            </td>
-            <td>${del}</td>`;
-    }
+    if (tipo === "declamacao") tr.innerHTML = `<td>${cat}</td><td><input required></td><td><input type="date" required></td><td><input required></td><td><select><option>Não</option><option>Sim</option></select></td><td>${del}</td>`;
+    else if (tipo === "vocal") tr.innerHTML = `<td>${cat}</td><td><input required></td><td><input type="date" required></td><td><input required></td><td>${del}</td>`;
+    else if (tipo === "tradicional") tr.innerHTML = `<td>${cat}</td><td><input class="input-prenda" required></td><td><input type="date" required></td><td><input required></td><td><input class="input-peao" required></td><td><input type="date" required></td><td><input required></td><td><select class="input-danca" required><option value="">Selecione...</option><option>Anú</option><option>Balaio</option><option>Cana Verde</option><option>Carangueijo</option><option>Chico Sapateado</option><option>Chimarrita</option><option>Chimarrita Balão</option><option>Chote Carreirinho</option><option>Chote de Sete Voltas</option><option>Chote de Duas Damas</option><option>Chote de Quatro Passi</option><option>Chote Ingles</option><option>Havaneira Marcada</option><option>Maçanico</option><option>Meia Canha</option><option>Pau de Fitas</option><option>Pezinho</option><option>Quero Mana</option><option>Rancheira de Carreirinha</option><option>Rilo</option><option>Roseira</option><option>Sarrabalho</option><option>Tatu de Volta no Meio</option><option>Tatu de Castonholas</option><option>Tirana do Lenço</option><option>Vanerão Sapateado</option><option>Valsa da Mão Trocada</option><option>Tirana do Ombro</select></td><td>${del}</td>`;
 
     tbody.appendChild(tr);
 }
@@ -348,7 +233,7 @@ function coletarInscricoes() {
                 tr.querySelectorAll("input,select").forEach((el, i) => {
                     if (i > 0) valores.push(el.value);
                 });
-                lista.push({ modalidade: mapaModalidade[m.tipo], valores: valores, suplente: tr.classList.contains("suplente") });
+                lista.push({ modalidade: mapaModalidade[m.tipo], valores: valores, suplente: false });
             });
         }
     });
@@ -404,6 +289,22 @@ function enviarInscricao() {
         document.getElementById("loading").style.display = "none";
         btn.disabled = false;
     });
+}
+
+function validarDadosEntidade() {
+    const ids = ["entidade", "municipio", "rt", "email", "whats", "responsavel"];
+    for (let id of ids) {
+        if (!document.getElementById(id).value.trim()) {
+            alert("Por favor, preencha todos os campos obrigatórios (*).");
+            document.getElementById(id).focus();
+            return false;
+        }
+    }
+    if (!document.getElementById("checkRegulamento").checked) {
+        alert("Você precisa aceitar o regulamento.");
+        return false;
+    }
+    return true;
 }
 
 function liberarCheck() {
