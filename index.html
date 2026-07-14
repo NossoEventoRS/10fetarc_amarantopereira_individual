@@ -3,46 +3,329 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ficha de Inscrição Modalidades Individuais- 10º FETARC</title>
+<title>Ficha de Inscrição Modalidades Individuais - 10º FETARC</title>
 
 <style>
-header{width:100%;margin:0;padding:0;}
-.testeira{width:100%;height:auto;display:block;}
-button{user-select:none;}
-body{font-family:Arial;background:#fff7f0;margin:0;
-font-family: Arial;
-    background-color: #f4efe5; /* Mantém a cor antiga como fundo padrão caso a imagem falhe */
-    background-image: url('https://raw.githubusercontent.com/NossoEventoRS/Imagens/refs/heads/main/Fundo.png'); /* Cole o link da sua imagem aqui */
-    background-size: cover; /* Faz a imagem cobrir toda a tela */
-    background-position: center; /* Centraliza a imagem */
-    background-repeat: no-repeat; /* Evita que a imagem fique se repetindo em mosaico */
-    background-attachment: fixed; /* Opcional: o fundo fica parado enquanto você rola a página */ }
-header img{width:100%}
-main{max-width:1100px;margin:30px auto;background:#fff;padding:25px;border-radius:15px;box-shadow:0 0 12px rgba(0,0,0,.2)}
-.section-title{background:#139c01;color:#fff;padding:12px;border-radius:10px;margin-top:40px;font-size:18px}
-.category-box{border:2px solid #ffd2a8;padding:15px;border-radius:12px;margin-top:20px}
-table{width:100%;border-collapse:collapse;margin-top:10px}
-th,td{border:1px solid #ddd;padding:8px;font-size:14px;text-align:center}
-th{background:#fdd700}
-input,select{width:95%;padding:6px;border-radius:6px;border:1px solid #ccc}
-.input-prenda{background:#ffe6ef}
-.input-peao{background:#e6f0ff}
-.input-danca{background:#fff6db;font-weight:bold}
-.btn-add{margin-top:10px;background:#139c01;border:none;padding:7px 14px;color:white;border-radius:8px;cursor:pointer}
-.btn-remove{background:red;color:white;border:none;padding:5px 10px;border-radius:6px;cursor:pointer}
-.botoes-final{display: flex; justify-content: center; gap: 20px; margin: 50px auto 0 auto; max-width: 600px;}
-.btn-submit,.btn-voltar{width:100%;padding:14px;background:#139c01;color:white;border:none;font-size:18px;border-radius:12px;cursor:pointer;text-decoration:none;text-align:center}
-.btn-submit:hover,.btn-voltar:hover{background:#ffd24d;color:#000;transition:0.2s}
-.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:999}
-.modal-content{background:#fff;padding:20px;border-radius:12px;width:300px;text-align:center}
-.modal-content button{margin-top:15px;padding:8px 16px;border:none;border-radius:6px;cursor:pointer}
-.loading-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255, 255, 255, 0.7);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:9999;color:rgb(2, 2, 2);text-align:center;}
-footer {text-align: center;margin-top: 20px;font-size: 12px;color: rgb(255, 255, 255);}
-.regulamento-box {margin-top: 20px;padding: 12px;background: #fff3e0;border: 2px solid #139c01;border-radius: 10px;font-size: 14px;}
-.regulamento-box a {color: #139c01;font-weight: bold;text-decoration: none;}
-.regulamento-box input[type="checkbox"] {width: auto;transform: scale(1.2);margin-right: 8px;}
-#contadorInscricao{width:100%; background:linear-gradient(90deg,#fbff00,#139c01); color:white; text-align:center; padding:18px; font-size:20px; font-weight:bold; letter-spacing:1px;}
-#inscricoesEncerradas{text-align:center;font-size:40px;font-weight:bold;color:#8B0000;margin-top:60px;display:none;}
+header { width: 100%; margin: 0; padding: 0; }
+.testeira { width: 100%; height: auto; display: block; }
+button { user-select: none; }
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4efe5; 
+  background-image: url('https://raw.githubusercontent.com/NossoEventoRS/Imagens/refs/heads/main/Fundo.png'); 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+}
+header img { width: 100%; }
+
+main {
+  max-width: 1100px;
+  margin: 20px auto;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 12px rgba(0,0,0,.2);
+  box-sizing: border-box;
+}
+
+.section-title {
+  background: #139c01;
+  color: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 30px;
+  font-size: 18px;
+}
+
+.category-box {
+  border: 2px solid #ffd2a8;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 15px;
+  background-color: #ffffff;
+  overflow-x: auto; /* Garante que tabelas muito grandes criem scroll interno em telas muito pequenas */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+th {
+  background: #fdd700;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box; /* Previne que o padding quebre a largura */
+}
+
+.input-prenda { background: #ffe6ef; }
+.input-peao { background: #e6f0ff; }
+.input-danca { background: #fff6db; font-weight: bold; }
+
+.btn-add {
+  margin-top: 15px;
+  background: #139c01;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  width: 100%; /* Largura total em telas menores */
+}
+
+@media (min-width: 576px) {
+  .btn-add {
+    width: auto; /* Volta ao tamanho normal em telas maiores */
+  }
+}
+
+.btn-remove {
+  background: red;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Flexibilidade para os Botões Finais */
+.botoes-final {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 40px auto 0 auto;
+  max-width: 600px;
+}
+
+@media (min-width: 576px) {
+  .botoes-final {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.btn-submit, .btn-voltar {
+  width: 100%;
+  padding: 14px;
+  background: #139c01;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.btn-submit:hover, .btn-voltar:hover {
+  background: #ffd24d;
+  color: #000;
+  transition: 0.2s;
+}
+
+.modal {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.modal-content select {
+  margin: 15px 0;
+}
+
+.modal-content button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+  color: rgb(2, 2, 2);
+  text-align: center;
+  padding: 20px;
+}
+
+footer {
+  text-align: center;
+  margin: 20px auto;
+  font-size: 12px;
+  color: #555;
+  padding: 10px;
+}
+
+.regulamento-box {
+  margin-top: 20px;
+  padding: 12px;
+  background: #fff3e0;
+  border: 2px solid #139c01;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.regulamento-box a {
+  color: #139c01;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.regulamento-box input[type="checkbox"] {
+  width: auto;
+  transform: scale(1.2);
+  margin-right: 8px;
+}
+
+#contadorInscricao {
+  width: 100%;
+  background: linear-gradient(90deg, #fbff00, #139c01);
+  color: white;
+  text-align: center;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 576px) {
+  #contadorInscricao {
+    padding: 18px;
+    font-size: 20px;
+  }
+}
+
+#inscricoesEncerradas {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: #8B0000;
+  margin-top: 40px;
+  display: none;
+}
+
+/* ======================================================
+   REGRAS ESPECÍFICAS PARA CELULARES (MOBILE)
+   ====================================================== */
+@media (max-width: 768px) {
+  /* Torna a tabela de dados da entidade verticalizada */
+  #formInscricao table, 
+  #formInscricao thead, 
+  #formInscricao tbody, 
+  #formInscricao th, 
+  #formInscricao td, 
+  #formInscricao tr { 
+    display: block; 
+  }
+  
+  #formInscricao thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  #formInscricao tr { 
+    border: 1px solid #ccc; 
+    margin-bottom: 10px;
+    background-color: #fcfcfc;
+    border-radius: 8px;
+    padding: 8px;
+  }
+  
+  #formInscricao td { 
+    border: none;
+    border-bottom: 1px solid #eee; 
+    position: relative;
+    padding-left: 0;
+    text-align: left;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+  
+  #formInscricao td:last-child {
+    border-bottom: 0;
+  }
+  
+  /* Ajusta inputs para ficarem legíveis e completos em telas pequenas */
+  input, select {
+    width: 100% !important;
+  }
+  
+  /* Otimização visual para linhas de concorrentes em formato de card */
+  tbody[id$="-body"] tr {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #ddd;
+    background: #fafafa;
+  }
+  
+  tbody[id$="-body"] td {
+    padding: 4px 0;
+    border: none;
+    text-align: left;
+  }
+
+  /* Cria um identificador visual rápido para cada dado no celular */
+  tbody[id$="-body"] td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    font-size: 11px;
+    color: #139c01;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+  }
+}
 </style>
 </head>
 <body>
@@ -54,7 +337,7 @@ footer {text-align: center;margin-top: 20px;font-size: 12px;color: rgb(255, 255,
 
 <header>
   <img class="testeira" src="https://raw.githubusercontent.com/NossoEventoRS/Imagens/refs/heads/main/ind.png" alt="Testeira Oficial">
-  <div id="contadorInscricao">⏳ Encerramento das inscriçoes... <span id="tempoRestante"></span></div>
+  <div id="contadorInscricao">⏳ Encerramento das inscrições... <span id="tempoRestante"></span></div>
 </header>
 <div id="inscricoesEncerradas">INSCRIÇÕES ENCERRADAS</div>
 
@@ -111,8 +394,8 @@ footer {text-align: center;margin-top: 20px;font-size: 12px;color: rgb(255, 255,
   <div class="modal-content">
     <h3>Selecionar categoria</h3>
     <select id="selectCategoria"></select><br>
-    <button onclick="confirmarCategoria()">Confirmar</button>
-    <button onclick="fecharModal()">Cancelar</button>
+    <button onclick="confirmarCategoria()" style="background:#139c01; color:white;">Confirmar</button>
+    <button onclick="fecharModal()" style="background:#ccc;">Cancelar</button>
   </div>
 </div>
 
@@ -161,7 +444,7 @@ function atualizarContado() {
 const intervaloCronometro = setInterval(atualizarContado, 1000);
 atualizarContado();
 
-const LIMITE = 3; // Alterado para no máximo 2 concorrentes
+const LIMITE = 3; 
 let tipoAtual = "";
 const categoriasPrendaPeao = ["Prenda Pré-Mirim", "Peão Pré-Mirim", "Prenda Mirim", "Peão Mirim", "Prenda Juvenil", "Peão Juvenil", "Prenda Adulta", "Peão Adulto", "Prenda Veterana", "Peão Veterano", "Prenda Xirú", "Peão Xirú"];
 const categoriasGerais = ["Pré-Mirim", "Mirim", "Juvenil", "Adulta"];
@@ -173,12 +456,12 @@ const modalidades = [
 const mapaModalidade = { declamacao: "Declamação", vocal: "Intérprete Vocal", tradicional: "Danças Tradicionais (Par)" };
 
 function criarTabela(m) {
-    return `<div class="section-title">${m.nome}</div><div class="category-box"><table><thead><tr>${cabecalho(m.tipo)}<th>Ação</th></tr></thead><tbody id="${m.tipo}-body"></tbody></table><button type="button" class="btn-add" onclick="abrirModal('${m.tipo}')">+ Adicionar</button></div>`;
+    return `<div class="section-title">${m.nome}</div><div class="category-box"><table><thead><tr>${cabecalho(m.tipo)}<th>Ação</th></tr></thead><tbody id="${m.tipo}-body"></tbody></table><button type="button" class="btn-add" onclick="abrirModal('${m.tipo}')">+ Adicionar Concorrente</button></div>`;
 }
 
 function cabecalho(tipo) {
     if (tipo === "declamacao") return "<th>Categoria</th><th>Concorrente</th><th>Nasc.</th><th>Cartão</th><th>Amadrinhador</th>";
-    if (tipo === "vocal" || tipo === "chula") return "<th>Categoria</th><th>Concorrente</th><th>Nasc.</th><th>Cartão</th>";
+    if (tipo === "vocal") return "<th>Categoria</th><th>Concorrente</th><th>Nasc.</th><th>Cartão</th>";
     if (tipo === "tradicional") return "<th>Categoria</th><th>Prenda</th><th>Nasc.</th><th>Cartão</th><th>Peão</th><th>Nasc.</th><th>Cartão</th><th>Dança</th>";
 }
 
@@ -214,11 +497,50 @@ function addRow(tipo, categoria) {
 
     const tr = document.createElement("tr");
     const cat = `<select class="categoria"><option>${categoria}</option></select>`;
-    const del = `<button type="button" class="btn-remove" onclick="this.closest('tr').remove()">X</button>`;
+    const del = `<button type="button" class="btn-remove" onclick="this.closest('tr').remove()">Excluir</button>`;
 
-    if (tipo === "declamacao") tr.innerHTML = `<td>${cat}</td><td><input required></td><td><input type="date" required></td><td><input required></td><td><select><option>Não</option><option>Sim</option></select></td><td>${del}</td>`;
-    else if (tipo === "vocal") tr.innerHTML = `<td>${cat}</td><td><input required></td><td><input type="date" required></td><td><input required></td><td>${del}</td>`;
-    else if (tipo === "tradicional") tr.innerHTML = `<td>${cat}</td><td><input class="input-prenda" required></td><td><input type="date" required></td><td><input required></td><td><input class="input-peao" required></td><td><input type="date" required></td><td><input required></td><td><select class="input-danca" required><option value="">Selecione...</option><option>Anú</option><option>Balaio</option><option>Cana Verde</option><option>Carangueijo</option><option>Chico Sapateado</option><option>Chimarrita</option><option>Chimarrita Balão</option><option>Chote Carreirinho</option><option>Chote de Sete Voltas</option><option>Chote de Duas Damas</option><option>Chote de Quatro Passi</option><option>Chote Ingles</option><option>Havaneira Marcada</option><option>Maçanico</option><option>Meia Canha</option><option>Pau de Fitas</option><option>Pezinho</option><option>Quero Mana</option><option>Rancheira de Carreirinha</option><option>Rilo</option><option>Roseira</option><option>Sarrabalho</option><option>Tatu de Volta no Meio</option><option>Tatu de Castonholas</option><option>Tirana do Lenço</option><option>Vanerão Sapateado</option><option>Valsa da Mão Trocada</option><option>Tirana do Ombro</select></td><td>${del}</td>`;
+    if (tipo === "declamacao") {
+        tr.innerHTML = `
+            <td data-label="Categoria">${cat}</td>
+            <td data-label="Concorrente"><input required placeholder="Nome Completo"></td>
+            <td data-label="Nascimento"><input type="date" required></td>
+            <td data-label="Cartão MTG"><input required placeholder="Nº Cartão"></td>
+            <td data-label="Amadrinhador"><select><option>Não</option><option>Sim</option></select></td>
+            <td data-label="Excluir">${del}</td>`;
+    }
+    else if (tipo === "vocal") {
+        tr.innerHTML = `
+            <td data-label="Categoria">${cat}</td>
+            <td data-label="Concorrente"><input required placeholder="Nome Completo"></td>
+            <td data-label="Nascimento"><input type="date" required></td>
+            <td data-label="Cartão MTG"><input required placeholder="Nº Cartão"></td>
+            <td data-label="Excluir">${del}</td>`;
+    }
+    else if (tipo === "tradicional") {
+        tr.innerHTML = `
+            <td data-label="Categoria">${cat}</td>
+            <td data-label="Prenda"><input class="input-prenda" required placeholder="Nome Completo Prenda"></td>
+            <td data-label="Nasc. Prenda"><input type="date" required></td>
+            <td data-label="Cartão Prenda"><input required placeholder="Nº Cartão"></td>
+            <td data-label="Peão"><input class="input-peao" required placeholder="Nome Completo Peão"></td>
+            <td data-label="Nasc. Peão"><input type="date" required></td>
+            <td data-label="Cartão Peão"><input required placeholder="Nº Cartão"></td>
+            <td data-label="Dança de Entrada/Saída">
+                <select class="input-danca" required>
+                    <option value="">Selecione...</option>
+                    <option>Anú</option><option>Balaio</option><option>Cana Verde</option><option>Carangueijo</option>
+                    <option>Chico Sapateado</option><option>Chimarrita</option><option>Chimarrita Balão</option>
+                    <option>Chote Carreirinho</option><option>Chote de Sete Voltas</option><option>Chote de Duas Damas</option>
+                    <option>Chote de Quatro Passi</option><option>Chote Ingles</option><option>Havaneira Marcada</option>
+                    <option>Maçanico</option><option>Meia Canha</option><option>Pau de Fitas</option><option>Pezinho</option>
+                    <option>Quero Mana</option><option>Rancheira de Carreirinha</option><option>Rilo</option><option>Roseira</option>
+                    <option>Sarrabalho</option><option>Tatu de Volta no Meio</option><option>Tatu de Castonholas</option>
+                    <option>Tirana do Lenço</option><option>Vanerão Sapateado</option><option>Valsa da Mão Trocada</option>
+                    <option>Tirana do Ombro</option>
+                </select>
+            </td>
+            <td data-label="Excluir">${del}</td>`;
+    }
 
     tbody.appendChild(tr);
 }
